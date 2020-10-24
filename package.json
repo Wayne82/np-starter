@@ -1,0 +1,71 @@
+{
+  "name": "node-package-starter",
+  "repository": {},
+  "version": "1.0.0",
+  "description": "A simple node package quick starter",
+  "main": "dist/index.js",
+  "bin": {
+    "mycmd": "dist/bin/command.js"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/esm.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "cross-env NODE_ENV=test nyc babel-node ./spec/run.js",
+    "test-no-coverage": "babel-node ./spec/run.js",
+    "lint": "eslint --ext .js ./src ./spec",
+    "lint-fix": "eslint --fix --ext .js ./src ./spec",
+    "build": "babel -d dist --ignore .nyc_output,node_modules,coverage,spec . && gen-esm-wrapper ./dist/index.js ./dist/esm.mjs",
+    "prebuild": "rm -rf dist",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "Node Package Starter"
+  ],
+  "author": "xeppty@gmail.com",
+  "license": "MIT",
+  "nyc": {
+    "all": true,
+    "check-coverage": true,
+    "require": [
+      "@babel/register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "exclude": [
+      "spec/**",
+      "coverage/**",
+      "dist",
+      "bin"
+    ],
+    "branches": 95,
+    "lines": 95,
+    "functions": 95,
+    "statements": 95,
+    "sourceMap": false,
+    "instrument": false
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "babel-plugin-istanbul": "^6.0.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.11.0",
+    "eslint-plugin-jasmine": "^4.1.1",
+    "gen-esm-wrapper": "^1.1.0",
+    "jasmine": "^3.6.2",
+    "jasmine-console-reporter": "^3.1.0",
+    "nyc": "^15.1.0"
+  },
+  "dependencies": {}
+}
