@@ -1,5 +1,3 @@
-import hello from "./src/hello.js";
+import hello from './src/hello.js';
 
-export {
-  hello
-}
+export { hello };

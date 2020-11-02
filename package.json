@@ -19,8 +19,8 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc babel-node ./spec/run.js",
     "test-no-coverage": "babel-node ./spec/run.js",
-    "lint": "eslint --ext .js ./src ./spec",
-    "lint-fix": "eslint --fix --ext .js ./src ./spec",
+    "lint": "eslint --ext .js .",
+    "lint-fix": "eslint --fix --ext .js .",
     "build": "babel -d dist --ignore .nyc_output,node_modules,coverage,spec . && gen-esm-wrapper ./dist/index.js ./dist/esm.mjs",
     "prebuild": "rm -rf dist",
     "prepack": "npm run build"
@@ -65,10 +65,20 @@
     "eslint-plugin-jasmine": "^4.1.1",
     "eslint-plugin-prettier": "^3.1.4",
     "gen-esm-wrapper": "^1.1.0",
+    "husky": "^4.3.0",
     "jasmine": "^3.6.2",
     "jasmine-console-reporter": "^3.1.0",
+    "lint-staged": "^10.5.1",
     "nyc": "^15.1.0",
     "prettier": "^2.1.2"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix"
+  }
 }
