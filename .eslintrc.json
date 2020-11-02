@@ -5,12 +5,14 @@
         "jasmine": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "plugin:prettier/recommended"],
     "parserOptions": {
         "ecmaVersion": 12,
         "sourceType": "module"
     },
     "plugins": ["jasmine"],
+    "ignorePatterns": ["dist"],
     "rules": {
+        "prettier/prettier": ["error", {"singleQuote": true}]
     }
 }
